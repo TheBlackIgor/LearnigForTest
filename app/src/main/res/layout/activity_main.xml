@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:layout_gravity="top"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wybierz film do zrecenzowania..."
+        android:textSize="40dp"
+        android:gravity="left"/>
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton android:id="@+id/film1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_200"
+            android:text="Film 1"
+            android:onClick="onRadioButtonClicked1"/>
+        <RadioButton android:id="@+id/film2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_200"
+            android:text="Film 2"
+            android:onClick="onRadioButtonClicked1"/>
+        <RadioButton android:id="@+id/film3"
+            android:layout_width="wrap_content"
+            android:textColor="@color/purple_200"
+            android:layout_height="wrap_content"
+            android:text="Film 3"
+            android:onClick="onRadioButtonClicked1"/>
+    </RadioGroup>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wybierz ocenę w skali 0 do 5"
+        android:textSize="20dp"
+        android:gravity="left"/>
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/review0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:onClick="onRadioButtonClicked2"/>
+        <RadioButton android:id="@+id/review1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:onClick="onRadioButtonClicked2"/>
+        <RadioButton android:id="@+id/review2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:onClick="onRadioButtonClicked2"/>
+        <RadioButton android:id="@+id/review3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:onClick="onRadioButtonClicked2"/>
+        <RadioButton android:id="@+id/review4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:onClick="onRadioButtonClicked2"/>
+        <RadioButton android:id="@+id/review5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:onClick="onRadioButtonClicked2"/>
+    </RadioGroup>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Podaj płeć"
+        android:textSize="20dp"
+        android:gravity="left"/>
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton android:id="@+id/M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mężczyzna"
+            android:onClick="onRadioButtonClicked3"/>
+        <RadioButton android:id="@+id/K"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kobieta"
+            android:onClick="onRadioButtonClicked3"/>
+    </RadioGroup>
+
+    <Button
+        android:layout_width="392dp"
+        android:layout_height="50dp"
+        android:text="ZAPISZ RECENZJE"
+        android:id="@+id/save"/>
+    <Button
+        android:layout_width="392dp"
+        android:layout_height="50dp"
+        android:text="ZAPISZ RECENZJE"
+        android:backgroundTint="@color/purple_500"
+        android:id="@+id/goToTheNextView"/>
+
+</LinearLayout>
