@@ -4,38 +4,48 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.example.testmyskills.classes.Film;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ReviewsActivity extends AppCompatActivity {
 
-    private ArrayList<Review> reviews;
+    ArrayList<Film> films = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
 
+
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        SQLiteManager sql = new SQLiteManager(ReviewsActivity.this);
-        reviews = sql.readReviews();
+        SQLiteManager sql = new SQLiteManager(this);
 
-//       Log.d("DATAFROMDB", Arrays.toString(reviews.toArray()));
+        films.add(sql.filmsRead("Film 1"));
+        films.add(sql.filmsRead("Film 2"));
+        films.add(sql.filmsRead("Film 3"));
 
-        reviews.add(new Review("XD", 2, "M"));
-        reviews.add(new Review("XD", 2, "M"));
-        AlertDialog.Builder alert = new AlertDialog.Builder(ReviewsActivity.this);
-        alert.setTitle("Data");
-        alert.setCancelable(false);//nie zamyka się po kliknięciu poza nim
-        alert.setMessage(reviews.get(0).getTitle());
-        alert.setNeutralButton("Close", null).show(); // null to pusty click
+        FilmsActivity adapter = new FilmsActivity(this, films);
+        ListView listView = (ListView) findViewById(R.id.filmsList);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(ReviewsActivity.this, DetailsActivity.class);
+                intent.putExtra("title", films.get(i).getFilm());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

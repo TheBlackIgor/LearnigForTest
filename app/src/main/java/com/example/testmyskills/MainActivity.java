@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
+import com.example.testmyskills.classes.Review;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,9 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private int review = -1;
     private String gender = null;
 
-    private RadioButton radio1;
-    private RadioButton radio2;
-    private RadioButton radio3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +46,12 @@ public class MainActivity extends AppCompatActivity {
                     alert.setCancelable(false);//nie zamyka się po kliknięciu poza nim
                     alert.setMessage("Zapisano do bazy danych");
                     alert.setNeutralButton("OK", null).show(); // null to pusty click
-                    radio1.setChecked(false);
-                    radio2.setChecked(false);
-                    radio3.setChecked(false);
+                     RadioGroup radio1 = findViewById(R.id.radio1);
+                     radio1.clearCheck();
+                    RadioGroup radio2 = findViewById(R.id.radio2);
+                    radio2.clearCheck();
+                    RadioGroup radio3 = findViewById(R.id.radio3);
+                    radio3.clearCheck();
                     Review newReview = new Review(filmForReview, review, gender);
                     SQLiteManager sql = new SQLiteManager(MainActivity.this);
                     sql.addReviewToDatabase(newReview);
@@ -71,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
     public void onRadioButtonClicked1(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        radio1 = ((RadioButton) view);
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.film1:
@@ -92,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
     public void onRadioButtonClicked2(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        radio2 = ((RadioButton) view);
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.review0:
@@ -125,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
     public void onRadioButtonClicked3(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        radio3 = ((RadioButton) view);
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.M:

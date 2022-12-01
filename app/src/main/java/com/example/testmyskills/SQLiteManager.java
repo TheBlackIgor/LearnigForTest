@@ -1,26 +1,16 @@
 package com.example.testmyskills;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import com.example.testmyskills.Review;
+import com.example.testmyskills.classes.Film;
+import com.example.testmyskills.classes.Review;
+import com.example.testmyskills.classes.SingleReview;
 
-import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 public class SQLiteManager extends SQLiteOpenHelper
@@ -111,6 +101,58 @@ public class SQLiteManager extends SQLiteOpenHelper
         }
         return reviews;
     }
+
+    public Film filmsRead(String title)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        double reviewAvg = 0.0;
+        double count = 0;
+        int m = 0;
+        int k = 0;
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE title='" + title + "'", null))
+        {
+            if(result.getCount() != 0)
+            {
+                while (result.moveToNext())
+                {
+                    count++;
+                    int id = result.getInt(1);
+                    reviewAvg += Integer.parseInt(result.getString(3));
+                    String gender = result.getString(4);
+                    if(gender == "M") m++;
+                    else k++;
+
+                }
+            }
+        }
+        if(count > 0)
+            return new Film(title, (reviewAvg / count), m, k);
+        else
+            return new Film(title, 0.00, 0,0);
+    }
+
+    public ArrayList<SingleReview> readSingleReview(String title)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+
+        ArrayList<SingleReview> reviews = new ArrayList<>();
+
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE title='" + title + "'", null))
+        {
+            if(result.getCount() != 0)
+            {
+                while (result.moveToNext())
+                {
+                    String gender = result.getString(4);
+                    int review = Integer.parseInt(result.getString(3));
+                    reviews.add(new SingleReview(title, gender, review));
+                }
+            }
+        }
+        return reviews;
+    }
+
+
 
 }
 

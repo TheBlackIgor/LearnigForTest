@@ -18,7 +18,8 @@
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/radio1">
         <RadioButton android:id="@+id/film1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +48,8 @@
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/radio2">
         <RadioButton android:id="@+id/review0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,7 +90,8 @@
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/radio3">
         <RadioButton android:id="@+id/M"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,7 +112,7 @@
     <Button
         android:layout_width="392dp"
         android:layout_height="50dp"
-        android:text="ZAPISZ RECENZJE"
+        android:text="ZOBACZ PODSUMOWANIE"
         android:backgroundTint="@color/purple_500"
         android:id="@+id/goToTheNextView"/>
 

@@ -1,4 +1,4 @@
-package com.example.testmyskills;
+package com.example.testmyskills.classes;
 
 public class Review {
     private static int id = 0;
